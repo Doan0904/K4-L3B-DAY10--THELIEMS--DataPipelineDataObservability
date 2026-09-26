@@ -1,0 +1,205 @@
+{
+  "samples": 10,
+  "questions": [
+    {
+      "id": "eval_001",
+      "question_type": "summary",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671812"
+      ],
+      "scenarios": [
+        "drop_latest_records"
+      ],
+      "ground_truth": "Static benchmarks fail to capture domain drift in enterprise knowledge bases.",
+      "baseline_hit": true,
+      "corrupted_hit": false,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 0.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "",
+      "repaired_answer": "Static benchmarks fail to capture domain drift in enterprise knowledge bases.",
+      "corrupted_judge_correct": false
+    },
+    {
+      "id": "eval_002",
+      "question_type": "summary",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671804"
+      ],
+      "scenarios": [
+        "drop_latest_records"
+      ],
+      "ground_truth": "We define freshness service-level agreements (SLAs) for temporal document ingestion.",
+      "baseline_hit": true,
+      "corrupted_hit": false,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 0.7200000000000001,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "An extended empirical study on e define freshness service-level agreements (SLAs) for temporal document ingestion.",
+      "repaired_answer": "We define freshness service-level agreements (SLAs) for temporal document ingestion.",
+      "corrupted_judge_correct": true
+    },
+    {
+      "id": "eval_003",
+      "question_type": "summary",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671802"
+      ],
+      "scenarios": [
+        "drop_latest_records"
+      ],
+      "ground_truth": "Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+      "baseline_hit": true,
+      "corrupted_hit": false,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 0.6842105263157894,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "#### xq9 zz@@ %%lorem-noise%% ~~ #### An extended empirical study on ilent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+      "repaired_answer": "Silent data corruption in RAG pipelines degrades LLM answer faithfulness without throwing runtime errors.",
+      "corrupted_judge_correct": true
+    },
+    {
+      "id": "eval_004",
+      "question_type": "authors",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671823"
+      ],
+      "scenarios": [
+        "inject_noise"
+      ],
+      "ground_truth": "Dat Tran, Lan Pham",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 1.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "Dat Tran, Lan Pham",
+      "repaired_answer": "Dat Tran, Lan Pham",
+      "corrupted_judge_correct": true
+    },
+    {
+      "id": "eval_005",
+      "question_type": "authors",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671821"
+      ],
+      "scenarios": [
+        "stale_date"
+      ],
+      "ground_truth": "Long Trinh, Ha Chu",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 1.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "Long Trinh, Ha Chu",
+      "repaired_answer": "Long Trinh, Ha Chu",
+      "corrupted_judge_correct": true
+    },
+    {
+      "id": "eval_006",
+      "question_type": "authors",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671820"
+      ],
+      "scenarios": [
+        "blank_summary"
+      ],
+      "ground_truth": "Phong Vu, Ngan Hoang",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 1.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "Phong Vu, Ngan Hoang",
+      "repaired_answer": "Phong Vu, Ngan Hoang",
+      "corrupted_judge_correct": true
+    },
+    {
+      "id": "eval_007",
+      "question_type": "date",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671818"
+      ],
+      "scenarios": [
+        "truncate_title"
+      ],
+      "ground_truth": "2026-06-06",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 0.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "2026-05-02",
+      "repaired_answer": "2026-06-06",
+      "corrupted_judge_correct": false
+    },
+    {
+      "id": "eval_008",
+      "question_type": "date",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671816"
+      ],
+      "scenarios": [
+        "stale_date"
+      ],
+      "ground_truth": "2026-06-04",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 0.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "2025-06-04",
+      "repaired_answer": "2026-06-04",
+      "corrupted_judge_correct": false
+    },
+    {
+      "id": "eval_009",
+      "question_type": "categories",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671814"
+      ],
+      "scenarios": [
+        "inject_noise"
+      ],
+      "ground_truth": "Software Engineering, Data Systems",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 1.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "Software Engineering, Data Systems",
+      "repaired_answer": "Software Engineering, Data Systems",
+      "corrupted_judge_correct": true
+    },
+    {
+      "id": "eval_010",
+      "question_type": "categories",
+      "ground_truth_doc_ids": [
+        "10.1145/3637528.3671801"
+      ],
+      "scenarios": [
+        "stale_date"
+      ],
+      "ground_truth": "Artificial Intelligence, Information Retrieval",
+      "baseline_hit": true,
+      "corrupted_hit": true,
+      "repaired_hit": true,
+      "baseline_token_f1": 1.0,
+      "corrupted_token_f1": 1.0,
+      "repaired_token_f1": 1.0,
+      "corrupted_answer": "Artificial Intelligence, Information Retrieval",
+      "repaired_answer": "Artificial Intelligence, Information Retrieval",
+      "corrupted_judge_correct": true
+    }
+  ]
+}
