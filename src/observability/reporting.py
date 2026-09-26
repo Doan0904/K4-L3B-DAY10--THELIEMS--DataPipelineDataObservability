@@ -88,18 +88,18 @@ def render_comparison_table(
         c = corr_m.get(k, 0.0)
         r = rep_m.get(k, 0.0)
         delta = c - b
-        md += f"| {k} | {b:.3f} | {c:.3f} | {r:.3f} | {delta:+.3f} | {'✅ Khôi phục hoàn toàn' if abs(r - b) < 1e-5 else '❌ Chưa khôi phục'} |\n"
+        md += f"| {k} | {b:.3f} | {c:.3f} | {r:.3f} | {delta:+.3f} | {'[OK] Khôi phục hoàn toàn' if abs(r - b) < 1e-5 else '[FAIL] Chưa khôi phục'} |\n"
         
     # Baseline được mặc định là True trong Phase 1
     b_q = True  
     c_q = corrupted_quality.get("success", False)
     r_q = repaired_quality.get("success", False)
-    md += f"| Quality Gate Success | {b_q} | {c_q} | {r_q} | - | {'✅' if r_q == b_q else '❌'} |\n"
+    md += f"| Quality Gate Success | {b_q} | {c_q} | {r_q} | - | {'[OK]' if r_q == b_q else '[FAIL]'} |\n"
     
     b_f = True
     c_f = corrupted_freshness.get("is_fresh", False)
     r_f = repaired_freshness.get("is_fresh", False)
-    md += f"| Freshness Check | {b_f} | {c_f} | {r_f} | - | {'✅' if r_f == b_f else '❌'} |\n"
+    md += f"| Freshness Check | {b_f} | {c_f} | {r_f} | - | {'[OK]' if r_f == b_f else '[FAIL]'} |\n"
     
     c_stale = corrupted_freshness.get("stale_ratio", 0.0)
     r_stale = repaired_freshness.get("stale_ratio", 0.0)

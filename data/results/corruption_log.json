@@ -1,0 +1,175 @@
+[
+  {
+    "scenario": "drop_latest_records",
+    "description": "Removed the newest 5 papers by published date.",
+    "affected_rows": 5,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671812",
+      "10.1145/3637528.3671808",
+      "10.1145/3637528.3671804",
+      "10.1145/3637528.3671807",
+      "10.1145/3637528.3671802"
+    ],
+    "params": {
+      "ratio": 0.2,
+      "dropped_rows": 5
+    },
+    "input_rows": 24,
+    "output_rows": 22
+  },
+  {
+    "scenario": "blank_summary",
+    "description": "Replaced the abstract with an empty string.",
+    "affected_rows": 3,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671824",
+      "10.1145/3637528.3671820",
+      "10.1145/3637528.3671815"
+    ],
+    "params": {
+      "positions": [
+        0,
+        5,
+        10
+      ],
+      "value": ""
+    },
+    "input_rows": 24,
+    "output_rows": 22
+  },
+  {
+    "scenario": "inject_noise",
+    "description": "Prefixed garbage characters to the abstract.",
+    "affected_rows": 3,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671823",
+      "10.1145/3637528.3671819",
+      "10.1145/3637528.3671814"
+    ],
+    "params": {
+      "positions": [
+        1,
+        6,
+        11
+      ],
+      "noise_prefix": "#### xq9 zz@@ %%lorem-noise%% ~~ ####"
+    },
+    "input_rows": 24,
+    "output_rows": 22
+  },
+  {
+    "scenario": "truncate_title",
+    "description": "Cut the title to 7 characters.",
+    "affected_rows": 3,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671822",
+      "10.1145/3637528.3671818",
+      "10.1145/3637528.3671813"
+    ],
+    "params": {
+      "positions": [
+        2,
+        7,
+        12
+      ],
+      "max_length": 7
+    },
+    "changes": [
+      {
+        "paper_id": "10.1145/3637528.3671822",
+        "before": "Advanced Perspectives on Automated Data Quality Profiling with Great Expectations in CI/CD",
+        "after": "Advance"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671818",
+        "before": "Advanced Perspectives on Semantic Layer Integration for Agentic Text-to-SQL Pipelines",
+        "after": "Advance"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671813",
+        "before": "Advanced Perspectives on Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks",
+        "after": "Advance"
+      }
+    ],
+    "input_rows": 24,
+    "output_rows": 22
+  },
+  {
+    "scenario": "stale_date",
+    "description": "Moved the publication date back 365 days.",
+    "affected_rows": 6,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671821",
+      "10.1145/3637528.3671810",
+      "10.1145/3637528.3671817",
+      "10.1145/3637528.3671816",
+      "10.1145/3637528.3671801",
+      "10.1145/3637528.3671811"
+    ],
+    "params": {
+      "positions": [
+        3,
+        4,
+        8,
+        9,
+        13,
+        14
+      ],
+      "shift_days": 365
+    },
+    "changes": [
+      {
+        "paper_id": "10.1145/3637528.3671821",
+        "before": "2026-06-09",
+        "after": "2025-06-09"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671810",
+        "before": "2026-06-08",
+        "after": "2025-06-08"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671817",
+        "before": "2026-06-05",
+        "after": "2025-06-05"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671816",
+        "before": "2026-06-04",
+        "after": "2025-06-04"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671801",
+        "before": "2026-05-20",
+        "after": "2025-05-20"
+      },
+      {
+        "paper_id": "10.1145/3637528.3671811",
+        "before": "2026-05-14",
+        "after": "2025-05-14"
+      }
+    ],
+    "input_rows": 24,
+    "output_rows": 22
+  },
+  {
+    "scenario": "duplicate_rows",
+    "description": "Appended exact copies of existing rows (same paper_id).",
+    "affected_rows": 3,
+    "affected_paper_ids": [
+      "10.1145/3637528.3671806",
+      "10.1145/3637528.3671809",
+      "10.1145/3637528.3671803"
+    ],
+    "params": {
+      "positions": [
+        15,
+        16,
+        17
+      ],
+      "copies_per_row": 1
+    },
+    "input_rows": 24,
+    "output_rows": 22
+  }
+]
