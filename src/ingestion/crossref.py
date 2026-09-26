@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from core.config import Settings
+from core.utils import read_json
 
 
 @dataclass(frozen=True)
@@ -47,5 +48,6 @@ def fetch_source_records(settings: Settings) -> list[PaperRecord]:
 
 
 def load_raw_records(path: Path) -> list[PaperRecord]:
-    """TODO(student): doc JSON snapshot va map thanh `PaperRecord`."""
-    raise NotImplementedError("Student task: implement raw record loading.")
+    """Doc JSON snapshot va map thanh `PaperRecord`."""
+    data = read_json(Path(path))
+    return [PaperRecord(**r) for r in data]
