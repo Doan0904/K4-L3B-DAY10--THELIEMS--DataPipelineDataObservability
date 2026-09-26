@@ -13,10 +13,10 @@
 
 | STT | Họ và tên | MSSV | Vai trò chính | Module/deliverable sở hữu |
 | --: | --- | --- | --- | --- |
-| 1 | Ngô Anh Khoa | [2A202602965] | Source & Corruption owner | `crossref.py`, `corruption.py` |
-| 2 | Đặng Đình Đoàn | 2A202602927 | Cleaning & Test-set owner | `cleaning.py`, `testset.py` |
+| 1 | Đặng Đình Đoàn | 2A202602927 | Ingestion & Corruption owner | `crossref.py`, `corruption.py` |
+| 2 | Ngô Anh Khoa | 2A202602965 | Cleaning & Test-set owner | `cleaning.py`, `testset.py` |
 | 3 | Mai Quang Dũng | 2A202602966 | Observability owner | `quality.py`, `reporting.py` |
-| 4 | Lê Văn Việt | [2A202602504] |  Integration owner | `phase1.py`, `corruption_flow.py` |
+| 4 | Lê Văn Việt | 2A202602504 | Integration owner | `phase1.py`, `corruption_flow.py` |
 
 ## 2. Tóm tắt kết quả
 
@@ -49,12 +49,12 @@ Crossref API
 
 | Khối             | Input          | Xử lý chính             | Output/artifact          | Owner          |
 | ----------------- | -------------- | -------------------------- | ------------------------ | -------------- |
-| Ingestion         | Crossref API | Lấy thông tin bài báo khoa học | `raw_records.json` | Ngô Anh Khoa |
-| Cleaning          | `raw_records.json` | Lọc Null, chuẩn hóa date, gộp authors | `papers_clean.json/csv` | Đặng Đình Đoàn |
+| Ingestion         | Crossref API | Lấy thông tin bài báo khoa học | `raw_records.json` | Đặng Đình Đoàn |
+| Cleaning          | `raw_records.json` | Lọc Null, chuẩn hóa date, gộp authors | `papers_clean.json/csv` | Ngô Anh Khoa |
 | Embedding/index   | `papers_clean.json` | OpenAI Embeddings, Chroma HNSW | `data/embeddings/` | Lê Văn Việt |
-| Evaluation        | RAG answers | So sánh Ground truth với answers | `baseline_metrics.json` | Đặng Đình Đoàn |
+| Evaluation        | RAG answers | So sánh Ground truth với answers | `baseline_metrics.json` | Ngô Anh Khoa |
 | Observability     | Clean DataFrame | GX validation, check age_days | `phase1_report.md` | Mai Quang Dũng |
-| Corruption/repair | Clean DataFrame | Corrupt data và sau đó Repair | `corruption_log.json` / Repaired data | Ngô Anh Khoa (Corrupt), Lê Văn Việt (Repair) |
+| Corruption/repair | Clean DataFrame | Corrupt data và sau đó Repair | `corruption_log.json` / Repaired data | Đặng Đình Đoàn (Corrupt), Lê Văn Việt (Repair) |
 | Orchestration     | Toàn bộ hệ thống | Điều phối 2 phases | Terminal / Log | Lê Văn Việt |
 
 ## 4. Cách tái hiện kết quả
