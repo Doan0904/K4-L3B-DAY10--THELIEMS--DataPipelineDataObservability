@@ -13,7 +13,7 @@
 | 1 | Đặng Đình Đoàn | 2A202602927 | dangnhatdoan@gmail.com | TV1 — Ingestion & Corruption owner; Hỗ trợ Pipeline Integration | `report/individual_2A202602927_DangDinhDoan.md` |
 | 2 | Ngô Anh Khoa | 2A202602965 | khoaanhngo113@gmail.com | TV2 — Data Cleaning & Benchmark Test-set owner (`cleaning.py`, `testset.py`) | `report/individual_2A202602965_NgoAnhKhoa.md` |
 | 3 | Mai Quang Dũng | 2A202602966 | maidung2005bk18@gmail.com | TV3 — Observability & Reporting owner (`quality.py`, `reporting.py`) | `report/individual_2A202602966_MaiQuangDung.md` |
-| 4 | Lê Văn Việt | 2A202602504 | [Email của Việt] | TV4 — Pipeline Integration owner (`phase1.py`, `corruption_flow.py`) | `report/individual_2A202602504_LeVanViet.md` |
+| 4 | Lê Văn Việt | 2A202602504 | vanviet0611@gmail.com | TV4 — Pipeline Integration owner (`phase1.py`, `corruption_flow.py`) | `report/individual_2A202602504_LeVanViet.md` |
 
 ---
 
@@ -49,8 +49,10 @@
 ### ## LeVanViet-2A202602504
 - **Vai trò:** TV4 — Pipeline Integration owner.
 - **Công việc chi tiết đã hoàn thành:**
-  - Thiết lập Quality Gate theo chuẩn mới **Great Expectations 1.x** và giám sát Freshness SLA trong `src/observability/quality.py`.
-  - Xây dựng bộ câu hỏi đánh giá chuẩn trong `src/evaluation/testset.py`.
-  - Đo lường và xuất bảng đối chiếu 3 trạng thái vào `data/reports/corruption_report.md`.
+  - Nối pipeline baseline trong `src/pipelines/phase1.py`: ingest → clean → index → giữ nguyên test set → evaluate → quality gate → `phase1_report.md`.
+  - Nối pipeline corruption trong `src/pipelines/corruption_flow.py`: làm bẩn → quality gate → đánh giá → repair từ `crossref_records.json` → đánh giá lại → bảng 3 trạng thái.
+  - Kiểm tra repair bằng nội dung (không chỉ `paper_id`) và chạy repair hai lần cùng `run_date` để chứng minh idempotent.
+  - Gắn từng câu trong `test_set.json` với kịch bản corruption tương ứng, ghi `data/results/question_impact.json`.
+  - Ghi `judge_mode` vào báo cáo baseline để phân biệt điểm LLM với heuristic fallback.
 - **Điều học được / Đóng góp chính:**
-  - Cách thiết lập hệ thống cảnh báo sớm chặn đứng hiện tượng Silent Failure trước khi dữ liệu vào serving layer.
+  - Hit rate và judge accuracy có thể cùng bằng 0.7 mà không phải cùng một tập câu. Quality gate bắt trùng ID, summary rỗng và dữ liệu cũ; riêng việc mất bài mới (`drop_latest_records`) chỉ lộ ra ở bộ đánh giá.

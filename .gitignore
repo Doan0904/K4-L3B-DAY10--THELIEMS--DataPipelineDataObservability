@@ -1,8 +1,30 @@
-solution/
+# Local secrets and scratch
 .env
+.env.*
+!.env.example
 lab.txt
-.venv/
-src/*.egg-info/
-lab/
-**/__pycache__/
 doc_verification_report.md
+solution/
+lab/
+
+# Python environments and build output
+.venv/
+venv/
+env/
+*.egg-info/
+src/*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+**/__pycache__/
+*.py[cod]
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

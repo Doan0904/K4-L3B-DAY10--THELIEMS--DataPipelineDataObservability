@@ -13,10 +13,21 @@ from observability.reporting import generate_phase1_report
 from retrieval.index import LocalEmbeddingIndex
 
 DEMO_QUESTION_LIMIT = 2
+HEURISTIC_JUDGE_REASONING = "Fallback heuristic judge used because the LLM evaluator was unavailable."
 
 
 def _log(step: str, message: str) -> None:
     print(f"[phase1] {step:<10} {message}")
+
+
+def _judge_mode(answers: list[dict[str, Any]]) -> str:
+    """Say whether the saved scores came from the configured LLM or the F1 fallback."""
+    reasons = [str((item.get("judge") or {}).get("reasoning", "")) for item in answers]
+    if reasons and all(HEURISTIC_JUDGE_REASONING in reason for reason in reasons):
+        return "heuristic fallback (LLM judge unavailable)"
+    if any(HEURISTIC_JUDGE_REASONING in reason for reason in reasons):
+        return "mixed (some samples used the heuristic fallback)"
+    return "llm"
 
 
 def _ensure_test_set(df, settings: Settings) -> list[dict[str, Any]]:
@@ -70,10 +81,11 @@ def main() -> None:
 
     bundle = evaluate_pipeline(settings, index, paths.eval_testset, paths.baseline_metrics, paths.baseline_answers)
     metrics = bundle.summary
+    judge_mode = _judge_mode(bundle.answers)
     _log(
         "evaluate",
         f"hit_rate={metrics['retrieval_hit_rate']:.3f} token_f1={metrics['mean_token_f1']:.3f} "
-        f"judge_acc={metrics['judge_accuracy']:.3f} -> {paths.baseline_metrics.name}",
+        f"judge_acc={metrics['judge_accuracy']:.3f} judge_mode={judge_mode} -> {paths.baseline_metrics.name}",
     )
 
     quality = run_data_quality_checks(df, settings, "baseline")
@@ -96,12 +108,20 @@ def main() -> None:
         ),
         "raw_records": len(records),
         "clean_rows": len(df),
-        "embedding_model": settings.embedding_model,
+        "embedding_model_configured": settings.embedding_model,
+        "embedding_backend": type(index.embedding_model).__name__,
         "collection": index.collection_name,
         "top_k": settings.top_k,
-        "llm_provider": settings.llm_provider,
+        "llm_provider_configured": settings.llm_provider,
+        "judge_mode": judge_mode,
         "run_at_utc": run_date.isoformat(timespec="seconds"),
     }
+    if type(index.embedding_model).__name__ != "MiniLMEmbeddings":
+        _log(
+            "index",
+            f"configured model is {settings.embedding_model}, runtime embedder is "
+            f"{type(index.embedding_model).__name__}",
+        )
     generate_phase1_report(paths.baseline_report, source_summary, metrics, quality, freshness)
     _log("report", f"-> {paths.baseline_report.relative_to(paths.project_dir)}")
 
