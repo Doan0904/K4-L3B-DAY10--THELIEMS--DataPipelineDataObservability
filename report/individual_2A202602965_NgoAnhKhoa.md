@@ -9,7 +9,7 @@
 | Khóa/Lớp         | K4 — L3B              |
 | Tên nhóm         | THE LIEMS     |
 | Vai trò chính    | TV2 — Data model & Benchmark Test-set owner |
-| Repository         | https://github.com/Doan0904/K4-L3B-DAY10--TenNhom--DataPipelineDataObservability |
+| Repository         | https://github.com/Doan0904/K4-L3B-DAY10--THELIEMS--DataPipelineDataObservability |
 | Ngày hoàn thành | 2026-09-26               |
 
 ---

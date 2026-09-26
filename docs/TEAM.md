@@ -49,7 +49,8 @@
 ### ## LeVanViet-2A202602504
 - **Vai trò:** TV4 — Pipeline Integration owner.
 - **Công việc chi tiết đã hoàn thành:**
-  - [Lê Văn Việt tự điền chi tiết đóng góp tại đây]
-  - [Lê Văn Việt tự điền chi tiết đóng góp tại đây]
+  - Thiết lập Quality Gate theo chuẩn mới **Great Expectations 1.x** và giám sát Freshness SLA trong `src/observability/quality.py`.
+  - Xây dựng bộ câu hỏi đánh giá chuẩn trong `src/evaluation/testset.py`.
+  - Đo lường và xuất bảng đối chiếu 3 trạng thái vào `data/reports/corruption_report.md`.
 - **Điều học được / Đóng góp chính:**
-  - [Lê Văn Việt tự điền bài học tại đây]
+  - Cách thiết lập hệ thống cảnh báo sớm chặn đứng hiện tượng Silent Failure trước khi dữ liệu vào serving layer.
